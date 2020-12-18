@@ -2,10 +2,15 @@ ARG VERSION=latest
 FROM docker.io/alpine:$VERSION
 ARG VERSION
 RUN apk update -q
-RUN apk add musl-locales bash coreutils diffutils findutils util-linux net-tools hwinfo lshw sudo grep file less vim-doc vim-editorconfig nano netcat-openbsd man-pages
+RUN apk add musl-locales shadow
+RUN apk add bash file less gawk grep sed coreutils diffutils findutils util-linux
+RUN apk add net-tools iproute2 netcat-openbsd
+RUN apk add hwinfo lshw
+RUN apk add vim-doc vim-editorconfig nano man-pages
 # RUN apk add vim vimdiff man-db
-RUN apk add iw wireless-tools iproute2
+RUN apk add iw wireless-tools
 RUN updatedb
+RUN echo pc1 > /etc/hostname
 RUN echo "=> VERSION = $VERSION"
 # RUN which lshw >/dev/null && lshw -businfo
 # RUN awk -F '[="]' 'BEGIN{printf"=> Welcome to "}/\<NAME=/{printf$3}/VERSION_ID=/{printf" v"$2}END{print" !"}' /etc/os-release
