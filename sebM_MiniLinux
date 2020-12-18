@@ -1,8 +1,13 @@
-FROM docker.io/alpine:latest
+ARG VERSION=latest
+FROM docker.io/alpine:$VERSION
+ARG VERSION
 RUN apk update -q
 RUN apk add musl-locales bash coreutils diffutils findutils util-linux net-tools hwinfo lshw sudo grep file less vim-doc vim-editorconfig nano netcat-openbsd man-pages
 # RUN apk add vim vimdiff man-db
 RUN apk add iw wireless-tools iproute2
 RUN updatedb
+RUN which lshw >/dev/null && lshw -businfo
+RUN echo "=> VERSION = $VERSION"
+# RUN awk -F '[="]' 'BEGIN{printf"=> Welcome to "}/\<NAME=/{printf$3}/VERSION_ID=/{printf" v"$2}END{print" !"}' /etc/os-release
 # RUN apk add bind dhcp-server-vanilla
 ENTRYPOINT ["bash"]
