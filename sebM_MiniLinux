@@ -1,0 +1,8 @@
+FROM docker.io/alpine:latest
+RUN apk update -q
+RUN apk add musl-locales bash coreutils diffutils findutils util-linux net-tools hwinfo lshw sudo grep file less vim-doc vim-editorconfig nano netcat-openbsd man-pages
+# RUN apk add vim vimdiff man-db
+RUN apk add iw wireless-tools iproute2
+RUN updatedb
+# RUN apk add bind dhcp-server-vanilla
+ENTRYPOINT ["bash"]
