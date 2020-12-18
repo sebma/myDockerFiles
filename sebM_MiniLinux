@@ -7,7 +7,7 @@ RUN apk add musl-locales bash coreutils diffutils findutils util-linux net-tools
 RUN apk add iw wireless-tools iproute2
 RUN updatedb
 RUN echo "=> VERSION = $VERSION"
-RUN which lshw >/dev/null && lshw -businfo
+# RUN which lshw >/dev/null && lshw -businfo
 # RUN awk -F '[="]' 'BEGIN{printf"=> Welcome to "}/\<NAME=/{printf$3}/VERSION_ID=/{printf" v"$2}END{print" !"}' /etc/os-release
 # RUN apk add bind dhcp-server-vanilla
 ENTRYPOINT ["bash"]
