@@ -14,5 +14,5 @@ RUN echo pc1 > /etc/hostname
 RUN echo "=> VERSION = $VERSION"
 # RUN which lshw >/dev/null && lshw -businfo
 # RUN awk -F '[="]' 'BEGIN{printf"=> Welcome to "}/\<NAME=/{printf$3}/VERSION_ID=/{printf" v"$2}END{print" !"}' /etc/os-release
-# RUN apk add bind dhcp-server-vanilla
+# RUN apk add bind bind-tools dhcp-server-vanilla
 ENTRYPOINT ["bash"]
