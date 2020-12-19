@@ -2,7 +2,7 @@ ARG VERSION=latest
 FROM docker.io/alpine:$VERSION
 ARG VERSION
 RUN apk update -q
-RUN apk add musl-locales shadow
+RUN apk add musl-locales shadow procps
 RUN apk add bash file less gawk grep sed coreutils diffutils findutils util-linux
 RUN apk add net-tools iproute2 netcat-openbsd
 RUN apk add hwinfo lshw
