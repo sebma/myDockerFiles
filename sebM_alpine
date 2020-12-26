@@ -1,0 +1,6 @@
+ARG VERSION=3.12
+FROM alpine:$VERSION
+ARG VERSION
+# RUN apk add --repository http://alpine.42.fr/v$VERSION/main bash
+RUN apk add --repository https://dl-cdn.alpinelinux.org/alpine/v$VERSION/main bash
+ENTRYPOINT ["bash"]
