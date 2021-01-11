@@ -1,6 +1,6 @@
-ARG VERSION=3.12
+ARG VERSION=latest
 FROM alpine:$VERSION
 ARG VERSION
-# RUN apk add --repository http://alpine.42.fr/v$VERSION/main bash
-RUN apk add --repository https://dl-cdn.alpinelinux.org/alpine/v$VERSION/main bash
+RUN sed -i s/http:/https:/ /etc/apk/repositories
+RUN apk add bash
 ENTRYPOINT ["bash"]
