@@ -1,7 +1,7 @@
 ARG VERSION=latest
-FROM alpine:$VERSION
+FROM docker.io/alpine:$VERSION
 ARG VERSION
-RUN cat /etc/alpine-release
 RUN sed -i s/http:/https:/ /etc/apk/repositories
 RUN apk add bash
+RUN cat /etc/alpine-release
 ENTRYPOINT ["bash"]
