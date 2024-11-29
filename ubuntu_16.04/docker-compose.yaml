@@ -1,0 +1,11 @@
+version: '2'
+services:
+  myProject-build:
+    build: .
+    image: myProject-dev-img:v0.0.1
+    container_name: myProject-dev
+    volumes:
+      - ../src/myDIR/:/myDIR/
+    dns:
+      - 172.16.1.5
+      - 172.16.1.6
