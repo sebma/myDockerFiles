@@ -4,6 +4,7 @@ services:
     build: .
     image: myProject-dev-img:v0.0.1
     container_name: myProject-dev
+    network_mode: host
     volumes:
       - ../src/myDIR/:/myDIR/
     dns:
