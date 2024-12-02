@@ -1,9 +1,9 @@
 services:
   myProject-build:
     build:
-    context: .
-    args:
-      apt_proxy: $apt_proxy
+      context: .
+      args:
+        apt_proxy: $apt_proxy
     image: myproject-dev-img:v0.0.1
     container_name: myProject-dev
 #    volumes:
