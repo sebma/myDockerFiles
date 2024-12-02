@@ -7,6 +7,6 @@ services:
     network_mode: host
     volumes:
       - ../src/myDIR/:/myDIR/
-    dns:
-      - 172.16.1.5
-      - 172.16.1.6
+#    dns:
+#      - 172.16.1.5
+#      - 172.16.1.6
