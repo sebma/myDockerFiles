@@ -1,10 +1,11 @@
 services:
   myProject-build:
     build:
+      dockerfile: Dockerfile-4-docker-compose
       args:
         apt_proxy: $apt_proxy
     image: myproject-dev-img:v0.0.1
     container_name: myProject-dev
+    network_mode: host
 #    volumes:
 #      - ../src/myDIR/:/myDIR/
-    network_mode: host
