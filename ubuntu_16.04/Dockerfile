@@ -11,4 +11,4 @@ COPY ./config $HOME/.ssh/
 COPY ./id_rsa $HOME/.ssh/
 RUN mkdir $HOME/myDIR
 WORKDIR $HOME
-ENTRYPOINT ["bash","-li"]
+CMD ["bash","-li"]
