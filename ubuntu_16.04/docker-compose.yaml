@@ -8,6 +8,3 @@ services:
 #    volumes:
 #      - ../src/myDIR/:/myDIR/
     network_mode: host
-#    dns:
-#      - 172.16.1.5
-#      - 172.16.1.6
