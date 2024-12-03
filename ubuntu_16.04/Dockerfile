@@ -8,7 +8,7 @@ RUN echo "source /usr/share/bash-completion/completions/git" >> $HOME/.profile
 RUN mkdir -vm=700 $HOME/.ssh/
 ENV HOME /root # Pour les commandes COPY et WORKDIR
 COPY ./config $HOME/.ssh/
-COPY id_rsa $HOME/.ssh/
+COPY ./id_rsa $HOME/.ssh/
 RUN mkdir $HOME/myDIR
 WORKDIR $HOME
 ENTRYPOINT ["bash","-li"]
