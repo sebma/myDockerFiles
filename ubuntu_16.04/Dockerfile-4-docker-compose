@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 FROM ubuntu:16.04
 ARG apt_proxy
 RUN printf "Acquire::http::Proxy   \"$apt_proxy\";\nAcquire::https::Proxy   \"$apt_proxy\";\n" >  /etc/apt/apt.conf.d/00aptproxy
