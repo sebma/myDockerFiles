@@ -1,9 +1,9 @@
-FROM coreapps/ubuntu16.04:2024-11-24
+FROM ubuntu:16.04
 ARG apt_proxy
 RUN printf "Acquire::http::Proxy   \"$apt_proxy\";\nAcquire::https::Proxy   \"$apt_proxy\";\n" >  /etc/apt/apt.conf.d/00aptproxy
 RUN sed -i 's|//archive|//fr.archive|' /etc/apt/sources.list
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt install -V -y vim command-not-found git remake emacs-nox nano openssh-server bind9-host # ocaml-nox
+RUN apt-get update && apt install -V -y vim command-not-found git remake emacs-nox nano openssh-client bind9-host # ocaml-nox
 RUN apt-get install -V -y bash-completion ca-certificates openssh-client
 RUN echo "source /usr/share/bash-completion/completions/git" >> $HOME/.profile
 RUN mkdir -vm=700 $HOME/.ssh/
