@@ -10,7 +10,7 @@ RUN apt-get install -V -y vim command-not-found git remake emacs-nox nano --no-i
 RUN echo "source /usr/share/bash-completion/completions/git" >> $HOME/.profile
 RUN mkdir -vm=700 $HOME/.ssh/
 # Pour les instructions COPY et WORKDIR
-ENV HOME /root
+ENV HOME=/root
 COPY config id_rsa $HOME/.ssh/
 RUN mkdir $HOME/myDIR
 WORKDIR $HOME
