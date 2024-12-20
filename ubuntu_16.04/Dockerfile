@@ -5,8 +5,11 @@ RUN printf "Acquire::http::Proxy   \"$apt_proxy\";\nAcquire::https::Proxy   \"$a
 RUN sed -i 's|//archive|//fr.archive|' /etc/apt/sources.list
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
-RUN apt-get install -V -y bash-completion ca-certificates openssh-client --no-install-recommends
-RUN apt-get install -V -y vim command-not-found git remake emacs-nox nano --no-install-recommends # ocaml-nox
+RUN <<-EOF
+	apt-get install -V -y tzdata --no-install-recommends
+	apt-get install -V -y bash-completion ca-certificates openssh-client --no-install-recommends
+	apt-get install -V -y vim command-not-found git remake emacs-nox nano --no-install-recommends # ocaml-nox
+EOF
 RUN echo "source /usr/share/bash-completion/completions/git" >> $HOME/.profile
 RUN mkdir -vm=700 $HOME/.ssh/
 # Pour les instructions COPY et WORKDIR
