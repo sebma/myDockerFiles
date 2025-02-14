@@ -2,7 +2,8 @@
 
 set -u
 scriptBaseName=${0/*\//}
-test $(id -u) == 0 && sudo="" || sudo=sudo
+type sudo >/dev/null 2>&1 && [ $(id -u) != 0 ] && groups | egrep -wq "sudo|adm|admin|root|wheel" && sudo="sudo" || sudo=""
+groups | egrep -w docker && docker=docker || docker="$sudo docker"
 
 dockerBuild () {
 	local imageName=""
@@ -38,16 +39,16 @@ dockerBuild () {
 
 	if env | grep apt_proxy -q ;then
 		set -x
-		time $sudo docker build --build-arg apt_proxy=$apt_proxy -t "$imageName" -f "$dockerFileName" "$dir" "$@"
+		time $docker build --build-arg apt_proxy=$apt_proxy -t "$imageName" -f "$dockerFileName" "$dir" "$@"
 	else
 		set -x
-		time $sudo docker build -t "$imageName" -f "$dockerFileName" "$dir" "$@"
+		time $docker build -t "$imageName" -f "$dockerFileName" "$dir" "$@"
 	fi
 	retCode=$?
 	set +x
 
 	if [ $retCode == 0 ];then
-		echo && $sudo docker images "$imageName" && echo && echo "=> $sudo docker run -it -h pc1 --rm --network=host $imageName bash -l"
+		echo && $docker images "$imageName" && echo && echo "=> $docker run -it -h pc1 --rm --network=host $imageName bash -l"
 	fi
 	return $retCode
 }
