@@ -1,11 +1,13 @@
-name: debian
+# syntax=docker/dockerfile:1
+# To run it interactively, just type this command : docker compose -f docker-compose-debian.yaml run --rm debian-bash
+name: debian-test
 services:
-    debian:
+    debian-bash:
         volumes:
             - /etc/timezone:/etc/timezone:ro
+        environment:
+            - TZ=Europe/Paris
         stdin_open: true
         tty: true
         image: debian
         command: bash
-        environment:
-          - TZ=Europe/Paris
