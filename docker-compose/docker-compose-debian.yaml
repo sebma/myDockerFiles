@@ -1,0 +1,11 @@
+name: debian
+services:
+    debian:
+        volumes:
+            - /etc/timezone:/etc/timezone:ro
+        stdin_open: true
+        tty: true
+        image: debian
+        command: bash
+        environment:
+          - TZ=Europe/Paris
