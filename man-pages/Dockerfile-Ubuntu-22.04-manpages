@@ -1,0 +1,28 @@
+FROM ubuntu:22.04
+
+ARG apt_proxy
+
+RUN printf "Acquire::http::Proxy   \"$apt_proxy\";\nAcquire::https::Proxy  \"$apt_proxy\";\n" >/etc/apt/apt.conf.d/00aptproxy
+
+RUN sed -i 's|//archive|//fr.archive|' /etc/apt/sources.list
+
+#RUN which gpg1 gpg2 gpg
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV HOME /root
+
+#RUN yes | unminimize
+RUN sed -i 's:^path-exclude=/usr/share/man:#path-exclude=/usr/share/man:' /etc/dpkg/dpkg.cfg.d/excludes
+
+#RUN apt-get update || apt-key adv --refresh-keys --keyserver hkp://keyserver.ubuntu.com:80
+#RUN apt-get update || apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 871920D1991BC93C
+RUN apt-get update
+
+RUN apt-get install -V --no-install-recommends -y man-db passwd coreutils grep gawk sed
+
+RUN egrep "(VERSION|PRETTY_NAME)=" /etc/os-release
+
+WORKDIR $HOME
+
+CMD ["bash","-li"]
+#CMD "man"
