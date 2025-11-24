@@ -1,14 +1,14 @@
 # syntax=docker/dockerfile:1
 name: gitk
 services:
+  gitk:
     build:
       dockerfile: Dockerfile_gitk
       args:
         apt_proxy: $apt_proxy
-    gitk:
-        network_mode: host
-        environment:
-            - DISPLAY
-        volumes:
-            - $HOME/.Xauthority:/root/.Xauthority:rw
-        image: gitk
+    network_mode: host
+    environment:
+      - DISPLAY
+    volumes:
+      - $HOME/.Xauthority:/root/.Xauthority:rw
+    image: gitk
