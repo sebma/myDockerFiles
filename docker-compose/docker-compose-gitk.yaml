@@ -4,7 +4,7 @@ name: gitk
 services:
   gitk:
     build:
-      dockerfile: Dockerfile_gitk
+      dockerfile: ../Dockerfiles/Dockerfile_gitk
       args:
         apt_proxy: $apt_proxy
     network_mode: host
