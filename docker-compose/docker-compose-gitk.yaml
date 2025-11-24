@@ -1,4 +1,5 @@
 # syntax=docker/dockerfile:1
+# Pour le lancer, taper la commande: docker compose -f docker-compose-gitk.yaml up --build
 name: gitk
 services:
   gitk:
