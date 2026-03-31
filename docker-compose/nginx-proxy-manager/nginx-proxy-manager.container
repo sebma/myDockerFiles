@@ -1,3 +1,4 @@
+#https://blog.stephane-robert.info/docs/conteneurs/moteurs-conteneurs/podman/quadlet/
 [Container]
 Environment=TZ=Australia/Brisbane
 Image=jc21/nginx-proxy-manager:2.14.0
