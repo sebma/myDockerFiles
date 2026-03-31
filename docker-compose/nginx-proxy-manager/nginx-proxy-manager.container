@@ -1,0 +1,11 @@
+[Container]
+Environment=TZ=Australia/Brisbane
+Image=jc21/nginx-proxy-manager:2.14.0
+PublishPort=80:80
+PublishPort=443:443
+PublishPort=81:81
+Volume=./data:/data
+Volume=./letsencrypt:/etc/letsencrypt
+
+[Service]
+Restart=always
