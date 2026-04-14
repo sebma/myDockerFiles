@@ -3,7 +3,7 @@
 set -u
 scriptBaseName=${0/*\//}
 test $(id -u) == 0 && sudo="" || sudo=$(type -P sudo)
-groups | egrep -w docker && docker=docker || docker="$sudo docker"
+groups | egrep -w docker -q && docker=docker || docker="$sudo docker"
 
 dockerBuild () {
 	local imageName=""
