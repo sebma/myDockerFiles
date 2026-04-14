@@ -2,7 +2,7 @@
 
 set -u
 scriptBaseName=${0/*\//}
-type sudo >/dev/null 2>&1 && [ $(id -u) != 0 ] && groups | egrep -wq "sudo|adm|admin|root|wheel" && sudo="sudo" || sudo=""
+test $(id -u) == 0 && sudo="" || sudo=$(type -P sudo)
 groups | egrep -w docker && docker=docker || docker="$sudo docker"
 
 dockerBuild () {
