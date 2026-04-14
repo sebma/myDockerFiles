@@ -10,6 +10,8 @@ dockerBuild () {
 	local imageRelease="v0.0.1"
 	local dockerFileName=""
 	local dir="."
+	local apt_proxy_file=""
+	local dockerVolumeCMD=""
 
 	if [ $# = 1 ];then
 		dockerFileName="$1"
@@ -48,7 +50,13 @@ dockerBuild () {
 	set +x
 
 	if [ $retCode == 0 ];then
-		echo && $docker images "$imageName" && echo && echo "=> $docker run -it -h pc1 --rm --network=host $imageName bash -l"
+		apt_proxy_file=$(egrep Acquire::https?::Proxy /etc/apt/apt.conf.d/* -l)
+		if [ -n "$apt_proxy_file" ];then
+			dockerVolumeCMD="-v $apt_proxy_file:$apt_proxy_file"
+		fi
+
+		echo && $docker images "$imageName" && echo
+		echo "=> $docker run -it -h pc1 --rm --network=host $dockerVolumeCMD $imageName bash -l"
 	fi
 	return $retCode
 }
